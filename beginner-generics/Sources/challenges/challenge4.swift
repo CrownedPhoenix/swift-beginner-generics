@@ -20,3 +20,9 @@ struct Spell<Source: PowerSource> {
 // let spell: Spell<Sun> = magic.magicMissile()
 
 // YOUR CODE BELOW THIS POINT
+
+extension Magic {
+    func magicMissile() -> Spell<Source> {
+        Spell(power: source)
+    }
+}

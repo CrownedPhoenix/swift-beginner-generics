@@ -65,21 +65,38 @@ func cast(_ spell: Spell) -> Result<String, Error> {
 // MARK: Making our own generics
 
 // A generic data structure (queue)
+struct Queue<Element> {
+    var arr: [Element] = []
+    mutating func push(_ element: Element) {
+        arr.insert(element, at: 0)
+    }
+    mutating func pop() -> Element? {
+        arr.popLast()
+    }
+}
 
 // A generic function (pairs)
 
-
-
+func pairs<Key, Value>(_ dict: Dictionary<Key, Value>) -> [(Key, Value)] {
+    dict.map({ ($0.key, $0.value) })
+}
 
 
 // MARK: Constraining a generic type
 
 // Write a function that gets the median of a list of values.
-
+func median<T: Comparable>(_ items: [T]) -> T? {
+    guard !items.isEmpty else { return nil }
+    return items.sorted()[(items.count - 1) / 2]
+}
 
 // Re-write the `add` functions from above using what we've learned (see also: ``AdditiveArithmetic``)
-
-
+protocol Summable {
+    static func +(lhs: Self, rhs: Self) -> Self
+}
+func add<T: Summable>(_ lhs: T, _ rhs: T) -> T {
+    lhs + rhs
+}
 
 
 
@@ -89,7 +106,11 @@ func cast(_ spell: Spell) -> Result<String, Error> {
 // MARK: Extending a generic type
 
 // Add an extension to `queue` that uses `Element` (peek)
-
+extension Queue {
+    func peek() -> Element? {
+        arr.last
+    }
+}
 
 
 
@@ -99,6 +120,12 @@ func cast(_ spell: Spell) -> Result<String, Error> {
 
 // Make a generic `Box` class and a handful of subclasses
 // NOTE: Subclasses of a generic type don't always have to be generic.
+
+class Box<Contents> {}
+class Gift<Contents>: Box<Contents> {}
+
+struct Shoe {}
+class ShoeBox: Box<Shoe> {}
 
 
 

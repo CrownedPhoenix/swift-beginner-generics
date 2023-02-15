@@ -14,3 +14,6 @@ struct Batch<A, B, C> {
 // let (a, b, c) = split(batch)
 
 // YOUR CODE BELOW THIS POINT
+func split<A,B,C>(_ batch: Batch<A,B,C>) -> (A, B, C) {
+    (batch.a, batch.b, batch.c)
+}

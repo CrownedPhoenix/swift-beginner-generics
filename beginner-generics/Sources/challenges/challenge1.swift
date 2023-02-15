@@ -18,3 +18,14 @@
 // - NOTE: Keep in mind that `Paper` and `Block` should be able to be substituted with *any* type.
 
 // YOUR CODE BELOW THIS POINT
+
+struct Stack<Element> {
+    var arr: [Element] = []
+    mutating func push(_ element: Element) {
+        arr.append(element)
+    }
+    
+    mutating func pop() -> Element? {
+        arr.popLast()
+    }
+}
